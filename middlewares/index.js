@@ -28,8 +28,6 @@ module.exports = {
         })
     },
 
-    refreshToken: () => {},
-
     checkIsUserExist: async (req, res, next) => {
         let {
             email
@@ -74,7 +72,7 @@ module.exports = {
         User.findByPk(req.userId).then(row => {
             if (row.role == 0) {
                 next()
-                return
+                return row.role
             }
 
             return res.status(403).json({
@@ -86,8 +84,10 @@ module.exports = {
     isTeacher: (req, res, next) => {
         User.findByPk(req.userId).then(row => {
             if (row.role == 1) {
+                console.log(row.role)
                 next()
-                return
+                console.log(row.role)
+                return row.role
             }
 
             return res.status(403).json({

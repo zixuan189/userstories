@@ -15,7 +15,3 @@ module.exports = new Sequelize(
     }
   }
 )
-
-// db.authenticate()
-// .then(() => console.log(`Database connected...`))
-// .catch(error => console.error(`Error: ${error}`))
