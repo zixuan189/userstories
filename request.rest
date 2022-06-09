@@ -1,0 +1,85 @@
+@hostname = localhost
+@port = 8080
+@baseUrl = http://{{hostname}}:{{port}}/api
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU0NzU0NzI4LCJleHAiOjE2NTQ3NTY1Mjh9.sPepUFkkzE-JpAdRhauoax-mMV76Bv6nzzUrvnjn2WM
+
+###
+
+GET http://{{hostname}}:{{port}}/
+
+###
+
+POST {{baseUrl}}/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "admin@gmail.com",
+  "name": "admin",
+  "password": "123",
+  "role": 0
+}
+
+###
+
+POST {{baseUrl}}/signin
+Content-Type: {{contentType}}
+
+{
+  "email": "admin@gmail.com",
+  "password": "123"
+}
+
+###
+
+POST {{baseUrl}}/students
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+  "email": "studenthon@gmail.com",
+  "name": "Hon"
+}
+
+###
+
+POST {{baseUrl}}/teachers
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+  "email": "teacherken@gmail.com",
+  "name": "Ken"
+}
+
+###
+
+POST {{baseUrl}}/register
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+  "teacher": "teachermary@gmail.com",
+  "students":
+    [
+      "studentmary@gmail.com"
+    ]
+}
+
+###
+
+GET {{baseUrl}}/commonstudents?teacher=teacherken%40gmail.com&teacher=teachermary%40gmail.com
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+###
+
+POST {{baseUrl}}/suspend
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+  "student" : "studentmary@gmail.com"
+}
+
+###
